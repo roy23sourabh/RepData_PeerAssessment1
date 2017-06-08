@@ -1,20 +1,22 @@
 ---
 title : Reproducible Research Peer Assessment 1
+author: Sourabh Roy
+date: "08 June 2017"
 output: 
-  html_document: 
-    keep_md: yes
+html_document: 
+keep_md: yes
 ---
-Author: Sourabh Roy  
+  
 
 ```{r global_options,include=FALSE}
 knitr::opts_chunk$set(echo=FALSE,results="hide",message = FALSE,warning = FALSE,fig.width = 8,fig.height = 8)
 require(ggplot2)
 require(dplyr)
 require(lattice)
-```  
+``` 
 
 ##Loading and preprocessing the data
-  
+
 1.Loading the data
 ```{r LoadingData,cache=TRUE,echo=TRUE,results='markup'}
 temp <- tempfile()
@@ -28,7 +30,7 @@ str(DF)
 ```{r processingData,echo=TRUE,results="hide"}
 DF$date <- as.Date(DF$date)
 ```
-  
+
 ##What is mean total number of steps taken per day?
 1.Total no of steps per day
 ```{r meanTotalSteps ,echo=TRUE,results='asis'}
@@ -44,7 +46,7 @@ y+ geom_hline(aes(yintercept=mean(totalDF$totalSteps),colour="mean"),lty=2,lwd=1
 median(totalDF$totalSteps)
 mean(totalDF$totalSteps)
 ```
-  
+
 ##What is the average daily activity pattern?
 ```{r AverageSteps,echo=TRUE,results="markup"}
 DF2 <- aggregate(DF$steps~DF$interval,FUN=mean,na.rm=TRUE)
@@ -55,7 +57,7 @@ maxStepsInterval <- DF2[,1][DF2$AverageSteps==maxAverageSteps]
 z+geom_vline(aes(xintercept=maxStepsInterval,colour="max Average Steps"),lty=2,lwd=1)
 maxAverageSteps
 ```
-  
+
 ##Imputing missing values
 
 1.Total no of missing values  
@@ -95,10 +97,9 @@ completeData$Day <- factor((weekdays(completeData$date) %in% weekday),levels = c
 ```
 
 ```{r panelplotting,echo=TRUE,results='markup'}
-##plotData <- split(completeData,completeData$Day)
 plotData <- aggregate(completeData$steps~completeData$interval+completeData$Day,FUN=mean)
 colnames(plotData) <- c("Interval","Day","AverageSteps")
 xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
 ```  
-  
+
 During weekends the persons starts activity bit late which can be compared from spike at 500 interval during weekday.

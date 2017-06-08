@@ -1,15 +1,17 @@
 ---
 title : Reproducible Research Peer Assessment 1
+author: Sourabh Roy
+date: "08 June 2017"
 output: 
-  html_document: 
-    keep_md: yes
+html_document: 
+keep_md: yes
 ---
-Author: Sourabh Roy  
+  
 
 
 
 ##Loading and preprocessing the data
-  
+
 1.Loading the data
 
 ```r
@@ -39,7 +41,7 @@ str(DF)
 ```r
 DF$date <- as.Date(DF$date)
 ```
-  
+
 ##What is mean total number of steps taken per day?
 1.Total no of steps per day
 
@@ -73,7 +75,7 @@ mean(totalDF$totalSteps)
 ```
 ## [1] 10766.19
 ```
-  
+
 ##What is the average daily activity pattern?
 
 ```r
@@ -94,7 +96,7 @@ maxAverageSteps
 ```
 ## [1] 206.1698
 ```
-  
+
 ##Imputing missing values
 
 1.Total no of missing values  
@@ -156,12 +158,11 @@ completeData$Day <- factor((weekdays(completeData$date) %in% weekday),levels = c
 
 
 ```r
-##plotData <- split(completeData,completeData$Day)
 plotData <- aggregate(completeData$steps~completeData$interval+completeData$Day,FUN=mean)
 colnames(plotData) <- c("Interval","Day","AverageSteps")
 xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
 ```
 
 ![plot of chunk panelplotting](figure/panelplotting-1.png)
-  
+
 During weekends the persons starts activity bit late which can be compared from spike at 500 interval during weekday.
