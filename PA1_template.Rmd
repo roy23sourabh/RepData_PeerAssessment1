@@ -1,3 +1,5 @@
+
+```{r }
 ---
 title : Reproducible Research Peer Assessment 1
 author: Sourabh Roy
@@ -103,3 +105,5 @@ xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
 ```  
 
 During weekends the persons starts activity bit late which can be compared from spike at 500 interval during weekday.
+```
+

@@ -1,3 +1,6 @@
+
+
+```r
 ---
 title : Reproducible Research Peer Assessment 1
 author: Sourabh Roy
@@ -7,7 +10,14 @@ html_document:
 keep_md: yes
 ---
   
+```
 
+```
+## Error: <text>:2:22: unexpected symbol
+## 1: ---
+## 2: title : Reproducible Research
+##                         ^
+```
 
 
 ##Loading and preprocessing the data
@@ -166,3 +176,5 @@ xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
 ![plot of chunk panelplotting](figure/panelplotting-1.png)
 
 During weekends the persons starts activity bit late which can be compared from spike at 500 interval during weekday.
+```
+
