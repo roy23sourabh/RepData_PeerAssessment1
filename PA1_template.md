@@ -5,11 +5,7 @@
 title : Reproducible Research Peer Assessment 1
 author: Sourabh Roy
 date: "08 June 2017"
-output: 
-html_document: 
-keep_md: yes
 ---
-  
 ```
 
 ```
@@ -18,7 +14,6 @@ keep_md: yes
 ## 2: title : Reproducible Research
 ##                         ^
 ```
-
 
 ##Loading and preprocessing the data
 
@@ -51,7 +46,6 @@ str(DF)
 ```r
 DF$date <- as.Date(DF$date)
 ```
-
 ##What is mean total number of steps taken per day?
 1.Total no of steps per day
 
