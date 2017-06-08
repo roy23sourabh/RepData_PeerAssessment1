@@ -1,46 +1,21 @@
 ---
+title : Reproducible Research Peer Assessment 1
 output: 
   html_document: 
     keep_md: yes
 ---
-# Reproducible Research: Peer Assessment 1
-Sourabh Roy  
+Author: Sourabh Roy  
 
 
 ##Loading and preprocessing the data
-
-
-
-1.Downloading the zip folder
+  
+1.Loading the data
 
 ```r
-fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
-if(file.exists("./repdata.zip")== FALSE)
-{download.file(fileUrl,destfile = "./repdata.zip",method="curl")
-}
-```
-2.Unzipping
-
-```
-##           Name Length                Date
-## 1 activity.csv 350829 2014-02-11 10:08:00
-```
-3.Loading the data
-
-```r
-DF <- read.csv("./repdata_1/activity.csv",header = TRUE,stringsAsFactors = FALSE)
-```
-
-```
-## Warning in file(file, "rt"): cannot open file './repdata_1/activity.csv':
-## No such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
+temp <- tempfile()
+download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip",temp,quiet = TRUE)
+DF <- read.table(unz(temp,"activity.csv"),header = TRUE,sep = ",",stringsAsFactors = FALSE)
+unlink(temp)
 dim(DF)
 ```
 
@@ -55,10 +30,10 @@ str(DF)
 ```
 ## 'data.frame':	17568 obs. of  3 variables:
 ##  $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ date    : Date, format: "2012-10-01" "2012-10-01" ...
+##  $ date    : chr  "2012-10-01" "2012-10-01" "2012-10-01" "2012-10-01" ...
 ##  $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
 ```
-4.Processing the data
+2.Processing the data
 
 ```r
 DF$date <- as.Date(DF$date)

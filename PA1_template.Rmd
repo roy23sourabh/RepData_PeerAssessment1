@@ -1,44 +1,29 @@
 ---
+title : Reproducible Research Peer Assessment 1
 output: 
   html_document: 
     keep_md: yes
 ---
+Author: Sourabh Roy  
 
-# Reproducible Research: Peer Assessment 1
-Sourabh Roy  
-
-```{r setoptions ,echo=FALSE,results='hide'}
-library(knitr)
-opts_chunk$set(echo=FALSE,results="hide")
-```
-##Loading and preprocessing the data
-
-```{r loadPackages}
+```{r global_options,include=FALSE}
+knitr::opts_chunk$set(echo=FALSE,results="hide",message = FALSE,warning = FALSE,fig.width = 8,fig.height = 8)
 require(ggplot2)
 require(dplyr)
 require(lattice)
 ```
-
-1.Downloading the zip folder
-```{r Downloading_data,echo= TRUE,results='hide'}
-fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
-if(file.exists("./repdata.zip")== FALSE)
-{download.file(fileUrl,destfile = "./repdata.zip",method="curl")
-}
-```
-2.Unzipping
-```{r UnzipingData,results='markup'}
-if(dir.exists("./repdata_1")==FALSE)
-{dir.create("./repdata_1")}
-unzip("./repdata.zip",overwrite= FALSE,exdir = "./repdata_1",list = TRUE)
-```  
-3.Loading the data
+##Loading and preprocessing the data
+  
+1.Loading the data
 ```{r LoadingData,cache=TRUE,echo=TRUE,results='markup'}
-DF <- read.csv("./repdata_1/activity.csv",header = TRUE,stringsAsFactors = FALSE)
+temp <- tempfile()
+download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip",temp,quiet = TRUE)
+DF <- read.table(unz(temp,"activity.csv"),header = TRUE,sep = ",",stringsAsFactors = FALSE)
+unlink(temp)
 dim(DF)
 str(DF)
 ```
-4.Processing the data
+2.Processing the data
 ```{r processingData,echo=TRUE,results="hide"}
 DF$date <- as.Date(DF$date)
 ```
@@ -112,5 +97,5 @@ completeData$Day <- factor((weekdays(completeData$date) %in% weekday),levels = c
 plotData <- aggregate(completeData$steps~completeData$interval+completeData$Day,FUN=mean)
 colnames(plotData) <- c("Interval","Day","AverageSteps")
 xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
-```
+```  
 During weekends the persons starts activity bit late which can be seen from spike at 500 interval.
