@@ -7,6 +7,7 @@ output:
 Author: Sourabh Roy  
 
 
+
 ##Loading and preprocessing the data
   
 1.Loading the data
@@ -38,6 +39,7 @@ str(DF)
 ```r
 DF$date <- as.Date(DF$date)
 ```
+  
 ##What is mean total number of steps taken per day?
 1.Total no of steps per day
 
@@ -71,7 +73,7 @@ mean(totalDF$totalSteps)
 ```
 ## [1] 10766.19
 ```
-
+  
 ##What is the average daily activity pattern?
 
 ```r
@@ -92,7 +94,7 @@ maxAverageSteps
 ```
 ## [1] 206.1698
 ```
-
+  
 ##Imputing missing values
 
 1.Total no of missing values  
@@ -142,7 +144,7 @@ mean(totalDF2$totalSteps)
 ```
 ## [1] 10766.19
 ```
-Do these values differ from the estimates from the first part of the assignment? No, it is almost same.What is the impact of imputing missing data on the estimates of the total daily number of steps? No major impact as only 13.11% of data was missing values.  
+Do these values differ from the estimates from the first part of the assignment? No, it is almost same.What is the impact of imputing missing data on the estimates of the total daily number of steps? No major impact as only 13.11% of data was missing values.    
 
 ##Are there differences in activity patterns between weekdays and weekends?
 
@@ -161,4 +163,5 @@ xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
 ```
 
 ![plot of chunk panelplotting](figure/panelplotting-1.png)
-During weekends the persons starts activity bit late which can be seen from spike at 500 interval.
+  
+During weekends the persons starts activity bit late which can be compared from spike at 500 interval during weekday.

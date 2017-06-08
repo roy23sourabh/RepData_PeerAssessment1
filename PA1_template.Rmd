@@ -11,7 +11,8 @@ knitr::opts_chunk$set(echo=FALSE,results="hide",message = FALSE,warning = FALSE,
 require(ggplot2)
 require(dplyr)
 require(lattice)
-```
+```  
+
 ##Loading and preprocessing the data
   
 1.Loading the data
@@ -27,6 +28,7 @@ str(DF)
 ```{r processingData,echo=TRUE,results="hide"}
 DF$date <- as.Date(DF$date)
 ```
+  
 ##What is mean total number of steps taken per day?
 1.Total no of steps per day
 ```{r meanTotalSteps ,echo=TRUE,results='asis'}
@@ -41,8 +43,8 @@ y <- g +geom_hline(aes(yintercept=median(totalDF$totalSteps),colour="median"),lt
 y+ geom_hline(aes(yintercept=mean(totalDF$totalSteps),colour="mean"),lty=2,lwd=1)+xlab("Date")+ylab("Total Steps")
 median(totalDF$totalSteps)
 mean(totalDF$totalSteps)
-```  
-
+```
+  
 ##What is the average daily activity pattern?
 ```{r AverageSteps,echo=TRUE,results="markup"}
 DF2 <- aggregate(DF$steps~DF$interval,FUN=mean,na.rm=TRUE)
@@ -52,8 +54,8 @@ maxAverageSteps <- max(DF2$AverageSteps)
 maxStepsInterval <- DF2[,1][DF2$AverageSteps==maxAverageSteps]
 z+geom_vline(aes(xintercept=maxStepsInterval,colour="max Average Steps"),lty=2,lwd=1)
 maxAverageSteps
-```  
-
+```
+  
 ##Imputing missing values
 
 1.Total no of missing values  
@@ -82,8 +84,8 @@ h <- w +geom_hline(aes(yintercept=median(totalDF2$totalSteps),colour="median"),l
 h+ geom_hline(aes(yintercept=mean(totalDF2$totalSteps),colour="mean"),lty=2,lwd=1)+xlab("Date")+ylab("Total Steps")
 median(totalDF2$totalSteps)
 mean(totalDF2$totalSteps)
-```
-Do these values differ from the estimates from the first part of the assignment? No, it is almost same.What is the impact of imputing missing data on the estimates of the total daily number of steps? No major impact as only 13.11% of data was missing values.  
+```  
+Do these values differ from the estimates from the first part of the assignment? No, it is almost same.What is the impact of imputing missing data on the estimates of the total daily number of steps? No major impact as only 13.11% of data was missing values.    
 
 ##Are there differences in activity patterns between weekdays and weekends?
 
@@ -98,4 +100,5 @@ plotData <- aggregate(completeData$steps~completeData$interval+completeData$Day,
 colnames(plotData) <- c("Interval","Day","AverageSteps")
 xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
 ```  
-During weekends the persons starts activity bit late which can be seen from spike at 500 interval.
+  
+During weekends the persons starts activity bit late which can be compared from spike at 500 interval during weekday.
