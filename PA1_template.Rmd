@@ -7,15 +7,18 @@ html_document:
 keep_md: yes
 ---
 
-```{r global_options,include=FALSE}
+```{r global_options}
 knitr::opts_chunk$set(echo=FALSE,results="hide",message = FALSE,warning = FALSE,fig.width = 8,fig.height = 8)
-require(ggplot2)
-require(dplyr)
-require(lattice)
 ```  
 ##Loading and preprocessing the data
 
 1.Loading the data
+
+```{r loadingPackages,echo=FALSE,include=FALSE}
+require(ggplot2)
+require(dplyr)
+require(lattice)
+```
 ```{r loadingData,cache=TRUE,echo=TRUE,results='markup'}
 temp <- tempfile()
 download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip",temp,quiet = TRUE)
