@@ -8,10 +8,7 @@ keep_md: yes
 ---
 
 
-```r
-knitr::opts_chunk$set(echo=FALSE,results="hide",message = FALSE,warning = FALSE,fig.width = 8,fig.height = 8)
-```
-##Loading and preprocessing the data
+## Loading and preprocessing the data
 
 1.Loading the data
 
@@ -45,7 +42,7 @@ str(DF)
 DF$date <- as.Date(DF$date)
 ```
 
-##What is mean total number of steps taken per day?
+## What is mean total number of steps taken per day?
 1.Total no of steps per day
 
 ```r
@@ -79,7 +76,7 @@ mean(totalDF$totalSteps)
 ## [1] 10766.19
 ```
 
-##What is the average daily activity pattern?
+## What is the average daily activity pattern?
 
 ```r
 DF2 <- aggregate(DF$steps~DF$interval,FUN=mean,na.rm=TRUE)
@@ -100,7 +97,7 @@ maxAverageSteps
 ## [1] 206.1698
 ```
 
-##Imputing missing values
+## Imputing missing values
 
 1.Total no of missing values  
 
@@ -151,7 +148,7 @@ mean(totalDF2$totalSteps)
 ```
 Do these values differ from the estimates from the first part of the assignment? No, it is almost same.What is the impact of imputing missing data on the estimates of the total daily number of steps? No major impact as only 13.11% of data was missing values.    
 
-##Are there differences in activity patterns between weekdays and weekends?
+## Are there differences in activity patterns between weekdays and weekends?
 
 
 ```r
