@@ -3,7 +3,7 @@ title : Reproducible Research Peer Assessment 1
 author: Sourabh Roy
 date: "08 June 2017"
 output: 
-html_document: 
+github_document: 
 keep_md: yes
 ---
 
