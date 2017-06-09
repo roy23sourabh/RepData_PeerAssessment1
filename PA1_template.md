@@ -1,9 +1,6 @@
----
-title : Reproducible Research Peer Assessment 1
-author: Sourabh Roy
-date: "08 June 2017"
-output: github_document
----
+# Reproducible Research Peer Assessment 1
+Sourabh Roy  
+08 June 2017  
 
 
 ## Loading and preprocessing the data
@@ -56,7 +53,7 @@ y <- g +geom_hline(aes(yintercept=median(totalDF$totalSteps),colour="median"),lt
 y+ geom_hline(aes(yintercept=mean(totalDF$totalSteps),colour="mean"),lty=2,lwd=1)+xlab("Date")+ylab("Total Steps")
 ```
 
-![plot of chunk plottingData](figure/plottingData-1.png)
+![](PA1_template_files/figure-html/plottingData-1.png)<!-- -->
 
 ```r
 median(totalDF$totalSteps)
@@ -85,7 +82,7 @@ maxStepsInterval <- DF2[,1][DF2$AverageSteps==maxAverageSteps]
 z+geom_vline(aes(xintercept=maxStepsInterval,colour="max Average Steps"),lty=2,lwd=1)
 ```
 
-![plot of chunk averageSteps](figure/averageSteps-1.png)
+![](PA1_template_files/figure-html/averageSteps-1.png)<!-- -->
 
 ```r
 maxAverageSteps
@@ -127,7 +124,7 @@ h <- w +geom_hline(aes(yintercept=median(totalDF2$totalSteps),colour="median"),l
 h+ geom_hline(aes(yintercept=mean(totalDF2$totalSteps),colour="mean"),lty=2,lwd=1)+xlab("Date")+ylab("Total Steps")
 ```
 
-![plot of chunk plottingCompletedData](figure/plottingCompletedData-1.png)
+![](PA1_template_files/figure-html/plottingCompletedData-1.png)<!-- -->
 
 ```r
 median(totalDF2$totalSteps)
@@ -161,6 +158,6 @@ colnames(plotData) <- c("Interval","Day","AverageSteps")
 xyplot(AverageSteps~Interval|Day,data = plotData,type="l",layout=c(1,2),lwd=2)
 ```
 
-![plot of chunk panelplotting](figure/panelplotting-1.png)
+![](PA1_template_files/figure-html/panelplotting-1.png)<!-- -->
 
 During weekends the persons starts activity bit late which can be compared from spike at 500 interval during weekday.
